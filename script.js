@@ -134,7 +134,7 @@ var camera = new THREE.PerspectiveCamera(
     1000
 );
 //reposition camera
-camera.position.set( 0,30,50 );
+camera.position.set( 10,10,75 );
 //point camera at given co-ordinates
 camera.lookAt( new THREE.Vector3( 0,15,0 ) );
 //create renderer
@@ -160,7 +160,7 @@ pointLight.shadow.mapSize.height = 1024;
 scene.add( pointLight );
 //basic material that shows the geometry wireframe
 var shadowMaterial = new THREE.ShadowMaterial( { color: 0xeeeeee } );
-shadowMaterial.opacity = 0.5;
+shadowMaterial.opacity = 0.3;
 var groundMesh = new THREE.Mesh(
     new THREE.BoxGeometry( 100, 0.1, 100 ),
     shadowMaterial
@@ -169,18 +169,24 @@ groundMesh.receiveShadow = true;
 scene.add( groundMesh );
 //simple geometric shape with flat material
 var shapeOne = new THREE.Mesh(
-    new THREE.OctahedronGeometry( 10, 1 ),
+    new THREE.OctahedronGeometry( 10, 5 ),
     new THREE.MeshStandardMaterial( {
         color: 0xff0051,
         shading: THREE.FlatShading,
         metalness: 0,
-        roughness: 0.8
+        roughness: 0.8,
+        morphTargets: true
+        //envMaps: reflection
+        //wireframe: true
+        //transparent: true
     } )
 );
 shapeOne.position.y += 10;
 shapeOne.rotateZ(Math.PI/3);
 shapeOne.castShadow = true;
 scene.add( shapeOne );
+
+
 // add second shape
 var shapeTwo = new THREE.Mesh(
     new THREE.OctahedronGeometry( 5,1 ),
@@ -198,7 +204,7 @@ shapeTwo.castShadow = true;
 scene.add( shapeTwo );
 
 var geoBox = new THREE.Mesh(
-    new THREE.BoxGeometry( 1,15,15,5 ),
+    new THREE.BoxGeometry( 1,10,20,1 ),
     new THREE.MeshStandardMaterial( {
         color: 0xCE0CE8,
         shading: THREE.FlatShading,
@@ -208,14 +214,43 @@ var geoBox = new THREE.Mesh(
 );
 geoBox.position.y += 6;
 geoBox.position.x += 30;
-geoBox.rotateZ(Math.PI/5);
-geoBox.rotateY(Math.PI/6);
+//geoBox.rotateZ(Math.PI/50);
+geoBox.rotateY(Math.PI/2);
 geoBox.castShadow = true;
 scene.add( geoBox );
 
 
-var elemnet = document.createElement( 'img' );
-element.src = ''
+var cube = new THREE.Mesh(
+    new THREE.CubeGeometry( 5, 5, 5, 5 ),
+    new THREE.MeshStandardMaterial( {
+        color: 0xCE0CE8,
+        side: THREE.BackSide
+    } )
+);
+cube.position.z += 20;
+cube.position.y += 6;
+cube.castShadow = true;
+scene.add( cube );
+
+// var element = document.createElement( 'img' );
+// element.src = 'BryanStephens_Resume.pdf';
+// var cssObject = new THREE.CSS3DObject( element );
+// scene.add( cssObject );
+//
+
+var ball = new THREE.Mesh(
+    new THREE.SphereGeometry( 7, 9, 4 ),
+    new THREE.MeshLambertMaterial( {
+        color: 0xCE0CE8,
+        side: THREE.BackSide
+    } )
+);
+// ball.position.z += 20;
+// ball.position.x += 30;
+// ball.position.y += 5;
+ball.position.set( 20, 6, 20 );
+ball.castShadow = true;
+scene.add( ball );
 
 
 //render the scene/camera
