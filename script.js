@@ -17,277 +17,193 @@
 // * 4.) far clipping plane
 // * * clipping plane ==> objects further away from the the camera than far or closer than near won't be rendered
 // * */
-// var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-// // renderer
-// var renderer = new THREE.WebGLRenderer();
-//
-// renderer.setSize( window.innerWidth, window.innerHeight );
-//
-// document.body.appendChild( renderer.domElement );
-//
-// // create a cube
-// var gemetry = new THREE.BoxGeometry(1,1,1);
-//
-// var material = new THREE.MeshBasicMaterial({
-//     color: 0x00ff00
-// });
-//
-// var cube = new THREE.MeshBasicMaterial( gemetry, material );
-//
-// scene.add( cube );
-//
-// camera.position.z = 5;
-//
-// // rendering the scene
-//
-// var render = function (){
-//     requestAnimationFrame( render );
-//
-//     //cube.rotation.x += 0.1;
-//     //cube.rotation.y += 0.1;
-//
-//     renderer.render ( scene, camera );
-// };
-//
-// render();
-// }
 
-// COPIED FROM INDEX.HTML
-// var scene = new THREE.Scene();
-//
-// var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-//
-// var renderer = new THREE.WebGLRenderer();
-//
-// renderer.setSize( window.innerWidth, window.innerHeight );
-//
-// document.body.appendChild( renderer.domElement );
-//
-// var geometry = new THREE.BoxGeometry( 1,1,1 );
-// var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
-// var cube = new THREE.Mesh( geometry, material );
-//
-// scene.add( cube );
-//
-// camera.position.z = 5;
-//
-// function render() {
-//     requestAnimationFrame( render );
-//
-//     cube.rotation.x += 0.1;
-//     cube.rotation.y += 0.1;
-//
-//     renderer.render( scene, camera );
-// }
-// render();
-
-
-var scene = new THREE.Scene();
-
-// var camera = new THREE.PerspectiveCamera(
-//     // Field of View
-//     75,
-//     // Aspect Ratio
-//     window.innerWidth / window.innerHeight,
-//     // Near clipping pane
-//     0.1,
-//     // Far clipping pane
-//     1000
-// );
-//
-// // reposition the camera
-// camera.position.set(5,5,0);
-//
-// // point camera at a given coordinate
-// camera.lookAt(new THREE.Vector3(0,0,0));
-//
-// // a mesh is created from the geometry and material, then added to the scene
-// var plane = new THREE.Mesh(
-//     new THREE.PlaneGeometry( 5, 5, 5, 5 ),
-//     new THREE.MeshBasicMaterial( { color: 0x222222, wireframe: true } )
-// );
-// plane.rotateX(Math.PI/2);
-// scene.add( plane );
-//
-// var renderer = new THREE.WebGLRenderer({ antialias: true});
-//
-// var controls = new THREE.OrbitControls( camera, renderer.domElement );
-// controls.addEventListener( 'change', function() { renderer.render(scene, camera ) });
-//
-// // size should be the same as the window
-// renderer.setSize( window.innerWidth, window.innerHeight );
-//
-// // set a new white clear colour (default is black)
-// renderer.setClearColor( 0xeeeeee );
-//
-// // append to the document
-// document.body.appendChild( renderer.domElement );
-//
-// // render the scene/camera combination
-// renderer.render( scene, camera );
+    var scene = new THREE.Scene();
 
 //create/position camera
-var camera = new THREE.PerspectiveCamera(
-    60,
-    window.innerWidth / window.innerHeight,
-    0.1,
-    1000
-);
+    var camera = new THREE.PerspectiveCamera(
+        60,
+        window.innerWidth / window.innerHeight,
+        0.1,
+        1000
+    );
+
 //reposition camera
-camera.position.set( 100,150,250 );
+    camera.position.set(100, 150, 250);
+
 //point camera at given co-ordinates
-camera.lookAt( new THREE.Vector3( 0,15,0 ) );
+    camera.lookAt(new THREE.Vector3(0, 15, 0));
+
 //create renderer
-var renderer = new THREE.WebGLRenderer( {antialias: true } );
+    var renderer = new THREE.WebGLRenderer({antialias: true});
+
 //size should be same as window
-renderer.setSize( window.innerWidth, window.innerHeight );
-//set a near white clear color
-renderer.setClearColor( 0x000000 );
+    renderer.setSize(window.innerWidth, window.innerHeight);
+
+//set a near black clear color
+    renderer.setClearColor(0x000000);
+
 //enable shadow mapping
-renderer.shadowMap.enabled = true;
-renderer.shadowMap.type = THREE.PCFShadowMap;
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFShadowMap;
+
 //append to the document
-document.body.appendChild( renderer.domElement );
+    document.body.appendChild(renderer.domElement);
+
 //add ambient lights
-var ambientLight = new THREE.AmbientLight( 0xffffff, 0.2 );
-scene.add( ambientLight );
+    var ambientLight = new THREE.AmbientLight(0xffffff, 0.2);
+    scene.add(ambientLight);
+
 //add a point that will cast shadows
-var pointLight = new THREE.PointLight( 0xffffff, 1 );
-pointLight.position.set( 25, 50, 25 );
-pointLight.castShadow = true;
-pointLight.shadow.mapSize.width = 1024;
-pointLight.shadow.mapSize.height = 1024;
-scene.add( pointLight );
-//basic material that shows the geometry wireframe
-var shadowMaterial = new THREE.ShadowMaterial( { color: 0xeeeeee } );
-shadowMaterial.opacity = 0.3;
-var groundMesh = new THREE.Mesh(
-    new THREE.BoxGeometry( 100, 0.1, 100 ),
-    shadowMaterial
-);
-groundMesh.receiveShadow = true;
-scene.add( groundMesh );
+    var pointLight = new THREE.PointLight(0xffffff, 1);
+    pointLight.position.set(25, 50, 25);
+    pointLight.castShadow = true;
+    pointLight.shadow.mapSize.width = 1024;
+    pointLight.shadow.mapSize.height = 1024;
+    scene.add(pointLight);
+
+    //// add a 3-D title
+    // var title = document.createElement('canvas');
+    // var context = title.getContext('2d');
+    // context.font = 'Bold 40px Arial';
+    // context.fillStyle = "rgba(255,0,0,0)";
+    // context.fillText('Space, the Final Frontier', 0, 50);
+    //
+    // var texture = new THREE.Texture(context);
+    // texture.needsUpdate = true;
+    // console.log(texture);
+    //
+    // var titleMaterial = new THREE.MeshBasicMaterial({map: texture, side: THREE.DoubleSide});
+    // titleMaterial.transparent = true;
+    // console.log(titleMaterial);
+    // var titleMesh = new THREE.Mesh(
+    //     new THREE.PlaneGeometry(title.width, title.height),
+    //     titleMaterial
+    // );
+    // titleMesh.position.y += 250;
+    // scene.add(titleMesh);
 
 
-//simple geometric shape with flat material
-var sun = new THREE.Mesh(
-    new THREE.OctahedronGeometry( 35, 5 ),
-    new THREE.MeshStandardMaterial( {
-        color: 0xFF6D00,
-        metalness: 0,
-        roughness: 0.3
-    } )
-);
+////simple geometric shape with flat material
+
+// sun at epicenter
+    var sun = new THREE.Mesh(
+        new THREE.OctahedronGeometry(35, 5),
+        new THREE.MeshStandardMaterial({
+            color: 0xFF6D00,
+            metalness: 0,
+            roughness: 0.3
+        })
+    );
 //sun.position.y += 10;
-//sun.rotateZ(Math.PI/3);
-//sun.castShadow = true;
-scene.add( sun );
+    scene.add(sun);
 
-var planet1 = new THREE.Mesh(
-    new THREE.OctahedronGeometry( 8, 5 ),
-    new THREE.MeshStandardMaterial( {
-        color: 0x74707F,
-        shading: THREE.FlatShading,
-        metalness: 0,
-        roughness: 0.3
-    } )
-);
-planet1.position.x += 75;
-planet1.position.z += 5;
-scene.add( planet1 );
+    var planet1 = new THREE.Mesh(
+        new THREE.OctahedronGeometry(8, 5),
+        new THREE.MeshStandardMaterial({
+            color: 0x74707F,
+            shading: THREE.FlatShading,
+            metalness: 0,
+            roughness: 0.3
+        })
+    );
+    planet1.position.x += 75;
+    planet1.position.z += 5;
+    scene.add(planet1);
 
 
-var planet2 = new THREE.Mesh(
-    new THREE.OctahedronGeometry( 5, 5 ),
-    new THREE.MeshStandardMaterial( {
-        color: 0x6780FF,
-        shading: THREE.FlatShading,
-        metalness: 0,
-        roughness: 0.3
-    } )
-);
-planet2.position.x += 110;
-planet2.position.z += 110;
-scene.add( planet2 );
+    var planet2 = new THREE.Mesh(
+        new THREE.OctahedronGeometry(5, 5),
+        new THREE.MeshStandardMaterial({
+            color: 0x6780FF,
+            shading: THREE.FlatShading,
+            metalness: 0,
+            roughness: 0.3
+        })
+    );
+    planet2.position.x += 110;
+    planet2.position.z += 110;
+    scene.add(planet2);
 
-var planet3 = new THREE.Mesh(
-    new THREE.OctahedronGeometry( 10, 5 ),
-    new THREE.MeshStandardMaterial( {
-        color: 0x20FF9C,
-        shading: THREE.FlatShading,
-        metalness: 0,
-        roughness: 0.3
-    } )
-);
-planet3.position.x += 250;
-scene.add( planet3 );
+    var planet3 = new THREE.Mesh(
+        new THREE.OctahedronGeometry(10, 5),
+        new THREE.MeshStandardMaterial({
+            color: 0x20FF9C,
+            shading: THREE.FlatShading,
+            metalness: 0,
+            roughness: 0.3
+        })
+    );
+    planet3.position.x += 250;
+    scene.add(planet3);
 
 
-var planet4 = new THREE.Mesh(
-    new THREE.OctahedronGeometry( 15, 5 ),
-    new THREE.MeshStandardMaterial( {
-        color: 0xFF54F4,
-        shading: THREE.FlatShading,
-        metalness: 0,
-        roughness: 0.3
-    } )
-);
-planet4.position.x += 150;
-planet4.position.z += -150;
-scene.add( planet4 );
+    var planet4 = new THREE.Mesh(
+        new THREE.OctahedronGeometry(15, 5),
+        new THREE.MeshStandardMaterial({
+            color: 0xFF54F4,
+            shading: THREE.FlatShading,
+            metalness: 0,
+            roughness: 0.3
+        })
+    );
+    planet4.position.x += 150;
+    planet4.position.z += -150;
+    scene.add(planet4);
 
-var planet5 = new THREE.Mesh(
-    new THREE.OctahedronGeometry( 15, 5 ),
-    new THREE.MeshStandardMaterial( {
-        color: 0xE8B867,
-        shading: THREE.FlatShading,
-        metalness: 0,
-        roughness: 0.3
-    } )
-);
+    var planet5 = new THREE.Mesh(
+        new THREE.OctahedronGeometry(15, 5),
+        new THREE.MeshStandardMaterial({
+            color: 0xE8B867,
+            shading: THREE.FlatShading,
+            metalness: 0,
+            roughness: 0.3
+        })
+    );
 // planet4.position.x += 150;
-planet5.position.z += 150;
-scene.add( planet5 );
+    planet5.position.z += 150;
+    scene.add(planet5);
 
 
-var planet6 = new THREE.Mesh(
-    new THREE.OctahedronGeometry( 9, 5 ),
-    new THREE.MeshStandardMaterial( {
-        color: 0x41FFBF,
-        shading: THREE.FlatShading,
-        metalness: 0,
-        roughness: 0.3
-    } )
-);
-planet6.position.x += -40;
-planet6.position.z += -175;
-scene.add( planet6 );
+    var planet6 = new THREE.Mesh(
+        new THREE.OctahedronGeometry(9, 5),
+        new THREE.MeshStandardMaterial({
+            color: 0x41FFBF,
+            shading: THREE.FlatShading,
+            metalness: 0,
+            roughness: 0.3
+        })
+    );
+    planet6.position.x += -40;
+    planet6.position.z += -175;
+    scene.add(planet6);
 
-var planet7 = new THREE.Mesh(
-    new THREE.OctahedronGeometry( 9, 5 ),
-    new THREE.MeshStandardMaterial( {
-        color: 0xFF291F,
-        shading: THREE.FlatShading,
-        metalness: 0,
-        roughness: 0.3
-    } )
-);
-planet7.position.x += -140;
-planet7.position.z += -55;
-scene.add( planet7 );
+    var planet7 = new THREE.Mesh(
+        new THREE.OctahedronGeometry(3, 5),
+        new THREE.MeshStandardMaterial({
+            color: 0xFFFAF8,
+            shading: THREE.FlatShading,
+            metalness: 0,
+            roughness: 0.3
+        })
+    );
+    planet7.position.x += -140;
+    planet7.position.z += -55;
+    scene.add(planet7);
 
-var planet8 = new THREE.Mesh(
-    new THREE.OctahedronGeometry( 17, 5 ),
-    new THREE.MeshStandardMaterial( {
-        color: 0xFF291F,
-        shading: THREE.FlatShading,
-        metalness: 0,
-        roughness: 0.3
-    } )
-);
-planet8.position.x += -205;
-planet8.position.z += -10;
-scene.add( planet8 );
+    var planet8 = new THREE.Mesh(
+        new THREE.OctahedronGeometry(17, 5),
+        new THREE.MeshStandardMaterial({
+            color: 0xFF291F,
+            shading: THREE.FlatShading,
+            metalness: 0,
+            roughness: 0.3
+        })
+    );
+    planet8.position.x += -205;
+    planet8.position.y += 3;
+    planet8.position.z += -10;
+    scene.add(planet8);
 
 // TODO: add more planets
 // TODO: configure y positioning on planets
@@ -358,32 +274,34 @@ scene.add( planet8 );
 // scene.add( ball );
 
 //add stars using for loop
-var particle, array = [];
-for (var i = -1000; i < 1000; i += 20){
-    particle = new THREE.Mesh(
-        new THREE.OctahedronGeometry( 1.5, 1 ),
-        new THREE.MeshStandardMaterial( {
-            color: 0xffffff,
-            shading: THREE.FlatShading,
-            metalness: 0,
-            roughness: 1
-        } )
-    );
+    var particle, array = [];
+    for (var i = -1000; i < 1000; i += 20) {
+        particle = new THREE.Mesh(
+            new THREE.OctahedronGeometry(1.5, 1),
+            new THREE.MeshStandardMaterial({
+                color: 0xffffff,
+                shading: THREE.FlatShading,
+                metalness: 0,
+                roughness: 1
+            })
+        );
 
-    particle.position.y = Math.random() * 1000 - 500;
-    particle.position.x = Math.random() * 1000 - 500;
+        particle.position.y = Math.random() * 1000 - 500;
+        particle.position.x = Math.random() * 1000 - 500;
 
-    particle.position.z = i;
+        particle.position.z = i;
 
-    scene.add( particle );
-    array.push( particle );
-}
+        scene.add(particle);
+        array.push(particle);
+    }
 
 
 //render the scene/camera
-renderer.render( scene, camera );
+    renderer.render(scene, camera);
 //add orbit control
-var controls = new THREE.OrbitControls( camera, renderer.domElement );
-controls.target = new THREE.Vector3( 0,15,0 );
-controls.maxPolarAngle = Math.PI / 2;
-controls.addEventListener('change', function() { renderer.render( scene, camera ) } );
+    var controls = new THREE.OrbitControls(camera, renderer.domElement);
+    controls.target = new THREE.Vector3(0, 15, 0);
+    controls.maxPolarAngle = Math.PI / 2;
+    controls.addEventListener('change', function () {
+        renderer.render(scene, camera)
+    });
