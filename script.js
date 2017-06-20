@@ -63,19 +63,21 @@
     scene.add(pointLight);
 
     //// add a 3-D title
-    var loader = new THREE.FontLoader();
+    // var title = new THREE.Mesh(
+    //     new THREE.TextGeometry( "Space, The Final Frontier", {
+    //         size: 40,
+    //         height: 10,
+    //         curveSegments: 12,
+    //         bevelThickness: 1,
+    //         bevelSize: 1,
+    //         bevelEnabled: false
+    //     }),
+    //     new THREE.MeshStandardMaterial({
+    //         color: 0xFF6D00
+    //     })
+    // );
+    // scene.add( title );
 
-    loader.load('/examples/fonts/droid/optimer_bold.typeface.json', function ( font ) {
-        var geometry = new THREE.TextGeometry( 'Space, The Final Frontier', {
-            font: font,
-            size: 17,
-            height, 1,
-            curveSegments: 20,
-            bevelEnabled: false,
-            bevelSize: 8,
-            bevelSegments: 5
-        });
-    });
 
 
 ////simple geometric shape with flat material
@@ -249,7 +251,9 @@
         console.log(spaceship.position);
         if (spaceship.position.x === -790){
             spaceship.position.x += 1;
-
+            if(spaceship.position.x <= -790){
+                spaceship.position.x += 1;
+            }
         }
         renderer.render( scene, camera );
 
