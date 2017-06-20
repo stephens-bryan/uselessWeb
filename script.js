@@ -63,25 +63,19 @@
     scene.add(pointLight);
 
     //// add a 3-D title
-    // var title = document.createElement('canvas');
-    // var context = title.getContext('2d');
-    // context.font = 'Bold 40px Arial';
-    // context.fillStyle = "rgba(255,0,0,0)";
-    // context.fillText('Space, the Final Frontier', 0, 50);
-    //
-    // var texture = new THREE.Texture(context);
-    // texture.needsUpdate = true;
-    // console.log(texture);
-    //
-    // var titleMaterial = new THREE.MeshBasicMaterial({map: texture, side: THREE.DoubleSide});
-    // titleMaterial.transparent = true;
-    // console.log(titleMaterial);
-    // var titleMesh = new THREE.Mesh(
-    //     new THREE.PlaneGeometry(title.width, title.height),
-    //     titleMaterial
-    // );
-    // titleMesh.position.y += 250;
-    // scene.add(titleMesh);
+    var loader = new THREE.FontLoader();
+
+    loader.load('/examples/fonts/droid/optimer_bold.typeface.json', function ( font ) {
+        var geometry = new THREE.TextGeometry( 'Space, The Final Frontier', {
+            font: font,
+            size: 17,
+            height, 1,
+            curveSegments: 20,
+            bevelEnabled: false,
+            bevelSize: 8,
+            bevelSegments: 5
+        });
+    });
 
 
 ////simple geometric shape with flat material
@@ -201,77 +195,25 @@
         })
     );
     planet8.position.x += -205;
-    planet8.position.y += 3;
+    planet8.position.y += 7;
     planet8.position.z += -10;
     scene.add(planet8);
+
+
+    var spaceship = new THREE.Mesh(
+        new THREE.CylinderGeometry( 1, 13.6, 1, 64 ),
+        new THREE.MeshBasicMaterial({
+            color: 0xBFBCBC,
+            shading: THREE.FlatShading
+        })
+    );
+    spaceship.position.x += 550;
+    spaceship.position.z += -75;
+    scene.add( spaceship );
 
 // TODO: add more planets
 // TODO: configure y positioning on planets
 // TODO: add satellite
-// add second shape
-// var shapeTwo = new THREE.Mesh(
-//     new THREE.OctahedronGeometry( 5,1 ),
-//     new THREE.MeshStandardMaterial( {
-//         color: 0x47689b,
-//         shading: THREE.FlatShading,
-//         metalness: 0,
-//         roughness: 0.8
-//     } )
-// );
-// shapeTwo.position.y += 5;
-// shapeTwo.position.x += 15;
-// shapeTwo.rotateZ(Math.PI/5);
-// shapeTwo.castShadow = true;
-// scene.add( shapeTwo );
-
-// var geoBox = new THREE.Mesh(
-//     new THREE.BoxGeometry( 1,10,20,1 ),
-//     new THREE.MeshStandardMaterial( {
-//         color: 0xCE0CE8,
-//         shading: THREE.FlatShading,
-//         metalness: 0,
-//         roughness: 1
-//     } )
-// );
-// geoBox.position.y += 6;
-// geoBox.position.x += 30;
-// //geoBox.rotateZ(Math.PI/50);
-// geoBox.rotateY(Math.PI/2);
-// geoBox.castShadow = true;
-// scene.add( geoBox );
-
-
-// var cube = new THREE.Mesh(
-//     new THREE.CubeGeometry( 5, 5, 5, 5 ),
-//     new THREE.MeshStandardMaterial( {
-//         color: 0xCE0CE8,
-//         side: THREE.BackSide
-//     } )
-// );
-// cube.position.z += 20;
-// cube.position.y += 6;
-// cube.castShadow = true;
-// scene.add( cube );
-
-// var element = document.createElement( 'img' );
-// element.src = 'BryanStephens_Resume.pdf';
-// var cssObject = new THREE.CSS3DObject( element );
-// scene.add( cssObject );
-//
-
-// var ball = new THREE.Mesh(
-//     new THREE.SphereGeometry( 7, 9, 4 ),
-//     new THREE.MeshLambertMaterial( {
-//         color: 0xCE0CE8,
-//         side: THREE.BackSide
-//     } )
-// );
-// // ball.position.z += 20;
-// // ball.position.x += 30;
-// // ball.position.y += 5;
-// ball.position.set( 20, 6, 20 );
-// ball.castShadow = true;
-// scene.add( ball );
 
 //add stars using for loop
     var particle, array = [];
@@ -280,9 +222,7 @@
             new THREE.OctahedronGeometry(1.5, 1),
             new THREE.MeshStandardMaterial({
                 color: 0xffffff,
-                shading: THREE.FlatShading,
-                metalness: 0,
-                roughness: 1
+                shading: THREE.FlatShading
             })
         );
 
@@ -302,6 +242,21 @@
     var controls = new THREE.OrbitControls(camera, renderer.domElement);
     controls.target = new THREE.Vector3(0, 15, 0);
     controls.maxPolarAngle = Math.PI / 2;
+
+    function spaceman() {
+        requestAnimationFrame( spaceman );
+        spaceship.position.x += -1;
+        console.log(spaceship.position);
+        if (spaceship.position.x === -790){
+            spaceship.position.x += 1;
+
+        }
+        renderer.render( scene, camera );
+
+    }
+
+    spaceman();
+
     controls.addEventListener('change', function () {
         renderer.render(scene, camera)
     });
