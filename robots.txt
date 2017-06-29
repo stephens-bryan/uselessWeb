@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /uselessWeb/
+Sitemap: http://www.brysteph.com/uselessWeb/sitemap.xml
