@@ -2,6 +2,7 @@
  * Created by bryanstephens on 2017-06-14.
  */
 
+// SDK for Facebook share link (taken from : https://developers.facebook.com/docs/plugins/share-button)
 (function(d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) return;
@@ -9,11 +10,10 @@
         js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9&appId=1223251851124789";
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
-//// need 3 things for three.js
-// camera, scene, render
 
 
-    var scene = new THREE.Scene();
+//// three.js
+var scene = new THREE.Scene();
 
 //create/position camera
     var camera = new THREE.PerspectiveCamera(
@@ -208,9 +208,6 @@
     spaceship.position.z += -75;
     scene.add( spaceship );
 
-// TODO: add more planets
-// TODO: configure y positioning on planets
-// TODO: add satellite
 
 //add stars using for loop
     var particle, array = [];

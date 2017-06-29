@@ -2,6 +2,7 @@ body {
     margin: 0;
     background-color: #000000;
     overflow: hidden;
+    font-family: 'Space Mono', monospace;
 }
 
 canvas {
@@ -16,4 +17,14 @@ h1 {
 .hidden {
     position: absolute;
     left: -10000px;
+}
+
+/* class to allow HTML elements overlap three.js canvas*/
+.info {
+    position: absolute;
+    top: 10px;
+    width: 100%;
+    text-align: center;
+    z-index: 100;
+    display: block;
 }
