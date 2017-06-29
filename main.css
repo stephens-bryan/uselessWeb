@@ -12,3 +12,8 @@ canvas {
 h1 {
     color: white;
 }
+
+.hidden {
+    position: absolute;
+    left: -10000px;
+}

@@ -1,21 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Basic META data tags -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Useless web project for Trends class">
     <meta name="keywords" content="HTML,CSS,Javascript">
     <meta name="author" content="Bryan Stephens">
+    <!-- Open Graph tags -->
+    <meta property="og:title" content="Space the Final Frontier" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="http://www.brysteph.com/uselessWeb/" />
+    <meta property="og:image" content="http://www.brysteph.com/uselessWeb/asset/img/screenshot.png" />
+    <meta property="og:description" content="A three.js application of our solar system and some of its visitors" />
     <title>Space Final Frontier</title>
+    <!-- Twitter Card tags -->
+    <meta property="twitter:card" content="summary" />
+    <meta property="twitter:site" content="@BryanStephens91" />
+    <meta property="twitter:title" content="Space the Final Frontier" />
+    <meta property="twitter:description" content="A three.js application of our solar system and some of its visitors" />
+    <meta property="twitter:image" content="http://www.brysteph.com/uselessWeb/asset/img/screenshot.png" />
+    <!-- Favicon tags -->
     <link rel="stylesheet" href="main.css">
+    <link rel="apple-touch-icon" sizes="57x57" href="portfolio.ico/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="portfolio.ico/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="portfolio.ico/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="portfolio.ico/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="portfolio.ico/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="portfolio.ico/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="portfolio.ico/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="portfolio.ico/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="portfolio.ico/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="portfolio.ico/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="portfolio.ico/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="portfolio.ico/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="portfolio.ico/favicon-16x16.png">
+    <link rel="manifest" href="portfolio.ico/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <!-- CDNs for three.js ==> multiple CDNs since the entire three.js library is hosted across different places; not consolidated -->
     <script src="https://threejs.org/build/three.min.js"></script>
     <script src="https://threejs.org/examples/js/controls/OrbitControls.js"></script>
     <script src="https://threejs.org/examples/js/renderers/CanvasRenderer.js"></script>
     <script src="http://learningthreejs.com/data/2013-04-30-closing-the-gap-between-html-and-webgl/vendor/CSS3DRenderer.js"></script>
 </head>
 <body>
-    <!--<script src="script.js"></script>-->
-    <script src="learn.js"></script>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9&appId=1223251851124789";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<header>
+</header>
+<main>
+    <h1 class="hidden"> Space The Final Frontier</h1>
+</main>
+<footer>
+    <!-- Share Button for Facebook
+     taken from: https://developers.facebook.com/docs/plugins/share-button -->
+    <div
+            class="fb-share-button"
+            data-href="http://brysteph.com/uselessWeb/"
+            data-layout="button"
+            data-size="small"
+            data-mobile-iframe="true">
+        <a class="fb-xfbml-parse-ignore"
+           target="_blank"
+           href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fbrysteph.com%2FuselessWeb%2F&amp;src=sdkpreparse">
+            Share
+        </a>
+    </div>
+</footer>
+<script src="script.js"></script>
 </body>
 </html>

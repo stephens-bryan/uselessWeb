@@ -2,21 +2,16 @@
  * Created by bryanstephens on 2017-06-14.
  */
 
-// // need 3 things for three.js
-// window.onload = init;
-//
-// function init(){
-// // scene
-// var scene = new THREE.Scene();
-// // camera
-// /*
-// * Parameters:
-// * 1.) field of view
-// * 2.) aspect ratio (almost always want to use the width of the element divided by the height
-// * 3.) near clipping plane
-// * 4.) far clipping plane
-// * * clipping plane ==> objects further away from the the camera than far or closer than near won't be rendered
-// * */
+(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9&appId=1223251851124789";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+//// need 3 things for three.js
+// camera, scene, render
+
 
     var scene = new THREE.Scene();
 
